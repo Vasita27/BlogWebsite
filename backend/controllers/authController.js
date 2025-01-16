@@ -57,20 +57,3 @@ exports.login = async (req, res) => {
   }
 };
 
-// Home page controller (for logged-in users)
-exports.home = (req, res) => {
-    console.log(req.user)
-  res.json({
-    message: 'Welcome to the Home Page',
-    user: req.user,
-  });
-};
-
-// Add Blog page controller (for content creators) - This is not used currently as contentCreator is handled in frontend
-exports.addBlog = (req, res) => {
-//Send user details
-  res.json({
-    message: 'Access granted to Add Blog page',
-    user: req.user,
-  });
-};
