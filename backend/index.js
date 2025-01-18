@@ -1,14 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
-
+const multer = require('multer')
 dotenv.config(); // Load environment variables from .env file
 const cors = require('cors');
 const connectDB = require('./config/db');
-
+const path = require("path")
 
 const app = express();
-
+app.use(express.urlencoded({ extended: true }));
 // Configure CORS to allow requests from specified origins
 app.use(cors({ 
     origin: ["http://localhost:3000"], //Will Update with the frontend's origin after hosting
@@ -22,6 +22,25 @@ app.use(express.json());
 
 //connect to database
 connectDB();
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "uploads/"); // Specify the folder where images will be stored
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname)); // Generate a unique filename
+    },
+  });
+  const upload = multer({ storage: storage });
+  app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Endpoint to upload image
+app.post("/uploadImage", upload.single("image"), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+
+  // Construct image URL
+  const imageUrl = `/uploads/${req.file.filename}`;
+  res.json({ imageUrl });
+});
 
 // Import userRoutes and attach them to the app
 const userRoutes = require('./routes/authRoutes');

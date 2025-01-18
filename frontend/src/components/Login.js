@@ -15,7 +15,8 @@ const Login = () => {
 
     try {
       const userData = { username, password };
-      const response = await axios.post(`${API_URL}/login`, userData); //Send the data to backend.
+      const response = await axios.post(`${API_URL}/login`, userData,{ withCredentials: true }); //Send the data to backend.
+     
       if (response.data.token) {
         sessionStorage.setItem('token', response.data.token); // Save token to sessionStorage
         navigate('/home'); // Redirect to home page on successful login using navigate

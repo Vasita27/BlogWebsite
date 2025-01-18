@@ -3,113 +3,168 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const CreateBlog = () => {
-  // State hooks to manage form data
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [categories, setCategories] = useState("");
   const [tags, setTags] = useState("");
-  const [image, setImage] = useState(null);  // State for storing the selected image
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  // Effect hook to check if the user is logged in by checking the token
+  // Check if user is logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      // Redirect to login if no token is found
       navigate("/login");
     }
   }, [navigate]);
 
-  // Handle image input change
+  // Handle image change and preview
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(file);  // Store the selected image file in state
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file)); // Show image preview
     }
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const token = localStorage.getItem("token");
     if (!token) {
-      // Redirect to login if token is missing during form submission
       navigate("/login");
       return;
     }
 
-    // Prepare FormData for image upload along with blog data
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("categories", categories.split(","));
-    formData.append("tags", tags.split(","));
-
+    // Upload the image first if there is one
+    let imageUrl = null;
     if (image) {
-      formData.append("image", image);  // Append the image file if it's provided
+      imageUrl = await uploadImage();
+      if (!imageUrl) {
+        setMessage("Image upload failed. Try again.");
+        return;
+      }
     }
 
+    // Prepare the blog data to be submitted (including the image URL)
+    const blogData = {
+      title,
+      content,
+      categories: categories.split(","), // Convert to array
+      tags: tags.split(","), // Convert to array
+      imageUrl, // Include the image URL if an image was uploaded
+    };
+
     try {
-      // Sending the form data (with image) to the backend
-      await axios.post("http://localhost:5000/app/createBlog", formData, {
-        headers: { Authorization: `Bearer ${token}` },
+      const response = await axios.post("http://localhost:5000/app/createBlog", blogData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
       });
-      // Redirect to home page upon successful submission
-      navigate("/home");
+
+      setMessage("Blog created successfully! Redirecting...");
+      setTimeout(() => navigate("/home"), 2000);
     } catch (error) {
-      // Show an error message if submission fails
-      alert("Failed to create blog");
+      setMessage("Failed to create blog. Please try again.");
+    }
+  };
+
+  // Function to upload the image
+  const uploadImage = async () => {
+    const formData = new FormData();
+    formData.append("image", image); // Attach the image file
+
+    try {
+      const response = await axios.post("http://localhost:5000/uploadImage", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return response.data.imageUrl; // Assuming the backend returns the image URL
+    } catch (error) {
+      console.error("Image upload failed", error);
+      return null;
     }
   };
 
   return (
-    <div className="container">
-      <h2>Create a New Blog</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Title Input */}
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)} // Update title state on change
-          required
-        />
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Create a New Blog</h2>
 
-        {/* Blog Content Textarea */}
-        <textarea
-          placeholder="Write your blog content here..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)} // Update content state on change
-          rows="10"
-          required
-        />
+      {message && (
+        <div className={`alert ${message.includes("success") ? "alert-success" : "alert-danger"}`}>
+          {message}
+        </div>
+      )}
 
-        {/* Categories Input */}
-        <input
-          type="text"
-          placeholder="Categories (comma-separated)"
-          value={categories}
-          onChange={(e) => setCategories(e.target.value)} // Update categories state on change
-          required
-        />
+      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
+        <div className="mb-3">
+          <label className="form-label">Title</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter blog title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
 
-        {/* Tags Input */}
-        <input
-          type="text"
-          placeholder="Tags (comma-separated)"
-          value={tags}
-          onChange={(e) => setTags(e.target.value)} // Update tags state on change
-        />
+        <div className="mb-3">
+          <label className="form-label">Content</label>
+          <textarea
+            className="form-control"
+            placeholder="Write your blog content here..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            rows="6"
+            required
+          />
+        </div>
 
-        {/* Image Upload Input (Optional) */}
-        <input
-          type="file"
-          accept="image/*" // Allow only image files
-          onChange={handleImageChange} // Handle image selection
-        />
+        <div className="mb-3">
+          <label className="form-label">Categories (comma-separated)</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="e.g., Technology, Health"
+            value={categories}
+            onChange={(e) => setCategories(e.target.value)}
+            required
+          />
+        </div>
 
-        <button type="submit">Publish</button>
+        <div className="mb-3">
+          <label className="form-label">Tags (comma-separated)</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="e.g., React, MongoDB, Node"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Upload Image</label>
+          <input
+            type="file"
+            className="form-control"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+        </div>
+
+        {imagePreview && (
+          <div className="mb-3 text-center">
+            <p>Image Preview:</p>
+            <img src={imagePreview} alt="Preview" className="img-fluid rounded shadow" width="200" />
+          </div>
+        )}
+
+        <button type="submit" className="btn btn-primary w-100">Publish</button>
       </form>
     </div>
   );

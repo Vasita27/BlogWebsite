@@ -1,0 +1,92 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .heading {
+    text-align: center;
+    color: #007bff;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  
+  .blogList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .blogCard {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .editBtn, .deleteBtn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .editBtn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .deleteBtn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .editForm {
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .editForm h2 {
+    text-align: center;
+  }
+  
+  .editForm label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .editForm input, .editForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .updateBtn, .cancelBtn {
+    width: 48%;
+    padding: 8px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .updateBtn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancelBtn {
+    background-color: #ffc107;
+    color: black;
+  }
+  

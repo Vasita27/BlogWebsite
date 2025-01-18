@@ -6,8 +6,8 @@ import Login from './components/Login';
 import Signup from './components/Signup'; 
 import HomePage from './components/HomePage'; 
 import AddBlog from './components/addBlog'; 
-
-
+import BlogDetail from './components/BlogDetail';
+import ManageBlogs from './components/ManageBlogs';
 const App = () => {
   return (
     <Router>
@@ -26,8 +26,11 @@ const App = () => {
           element={<AddBlog />
           }
         />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/manageblogs" element={<ManageBlogs />} />
         {/* All other routes which are not defined or valid, redirect to login page */}
         <Route path="*" element={<Login />} />
+
       </Routes>
     </Router>
   );

@@ -15,8 +15,7 @@ const Signup = () => {
 
     try {
       const userData = { username, password, role }; // Include the selected role
-      const response = await axios.post(`${API_URL}/signup`, userData); //Send the data to backend
-
+      const response = await axios.post(`${API_URL}/signup`, userData,{ withCredentials: true }); //Send the data to backend
       if (response.data.token) {
         sessionStorage.setItem('token', response.data.token); // Save token to sessionStorage
         navigate('/home'); // Redirect to home page after successful signup using navigate

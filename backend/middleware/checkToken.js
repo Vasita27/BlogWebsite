@@ -5,9 +5,9 @@ const SECRET_KEY = process.env.JWT_SECRET || 'privatekey';
 
 // Middleware to check the token
 const checkToken = (req, res, next) => {
-    //Check headers
+  //Check headers
   const token = req.cookies.user;
-  console.log(token)
+ 
   if (token) {
     //format the header to compare
 
