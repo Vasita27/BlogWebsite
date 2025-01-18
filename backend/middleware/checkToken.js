@@ -6,12 +6,10 @@ const SECRET_KEY = process.env.JWT_SECRET || 'privatekey';
 // Middleware to check the token
 const checkToken = (req, res, next) => {
     //Check headers
-  const header = req.headers['authorization'];
-
-  if (typeof header !== 'undefined') {
+  const token = req.cookies.user;
+  console.log(token)
+  if (token) {
     //format the header to compare
-    const bearer = header.split(' ');
-    const token = bearer[1];
 
     jwt.verify(token, SECRET_KEY, (err, decoded) => {
       if (err) {

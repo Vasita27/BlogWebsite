@@ -1,5 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+
 dotenv.config(); // Load environment variables from .env file
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -14,6 +16,8 @@ app.use(cors({
 }));
 
 // Middleware to parse incoming JSON requests
+app.use(cookieParser());
+
 app.use(express.json());
 
 //connect to database

@@ -50,7 +50,11 @@ exports.login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
-    res.json({ message: 'Login successful', token });
+    res.cookie('user', token, {
+      httpOnly: true, 
+      maxAge: 3600000, 
+      secure: false
+  }).json({ message: 'Login successful', token });
   } catch (error) {
     console.error("Error occurred during login:", error);
     res.status(500).json({ message: 'Error during login', error });

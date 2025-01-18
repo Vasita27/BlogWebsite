@@ -33,8 +33,8 @@ const BlogSchema = new mongoose.Schema(
       default: 0, // Track blog views for "Trending" feature
     },
     likes: {
-      type: Number,
-      default: 0, // Track likes for "Trending" feature
+      type: [String],
+      default: [], // Track likes for "Trending" feature
     },
     status: {
       type: String,
