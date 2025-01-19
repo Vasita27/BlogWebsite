@@ -1,13 +1,32 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@layer utilities {
+  /* Act as a border */
+  .card-wrapper {
+    @apply relative overflow-hidden rounded-3xl bg-gradient-to-b from-slate-950 to-slate-950;
+  }
+
+  /* Gradient */
+  .card-wrapper::before {
+    background: conic-gradient(
+      rgba(0, 0, 0, 0) 0deg,
+      #46cec4 80deg,
+      rgba(0, 0, 0, 0) 100deg,
+      rgba(0, 0, 0, 0) 170deg,
+      #fdd74d 260deg,
+      rgba(0, 0, 0, 0) 280deg,
+      rgba(0, 0, 0, 0) 360deg,
+
+      transparent 180deg
+    );
+
+    @apply absolute left-[-25%] top-[-25%] h-[150%] w-[150%] animate-border-spin content-[''];
+  }
+
+  /* Body */
+  .card-content {
+    @apply absolute left-[5px] top-[5px] h-[calc(100%-10px)] w-[calc(100%-10px)] rounded-2xl bg-gradient-to-b from-slate-950 to-slate-950;
+  }
+} 

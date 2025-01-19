@@ -26,30 +26,43 @@ const Signup = () => {
   };
   //Component that is returned
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <input
+    <div className="flex h-[100vh] w-[100vw] flex-col items-center justify-center bg-black">
+    <div className="card-wrapper h-[470px] w-[420px]">
+      <div className="card-content flex items-center justify-center text-xs">
+      <div className='bg-black p-6 h-[450px] w-[400px] rounded-3xl shadow-lg'>
+       <h2 className='text-3xl font-bold text-center text-green-300 mb-6'>Signup</h2>
+       <form onSubmit={handleSubmit}>
+         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="w-full px-4 py-4 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
+          className="w-full px-4 py-6 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+            />
         <select
           value={role}
-          onChange={(e) => setRole(e.target.value)} // Update role based on selection
+          onChange={(e) => setRole(e.target.value)} 
+          className="w-full px-4 py-6 mt-2 bg-black text-white   border-b border-blue-500 focus:outline-none  focus:ring-blue-500 placeholder-gray-400"
+
         >
           <option value="user">User</option>
           <option value="contentCreator">Content Creator</option>
         </select>
-        <button type="submit">Signup</button>
+              <button type="submit"
+              className="w-full py-6 mt-4 text-lg text-white font-bold  rounded border-2 border-yellow-300 hover:opacity-90 shadow-lg"
+              >Signup</button>
       </form>
+    </div>
+      </div>
+      </div>
     </div>
   );
 };
