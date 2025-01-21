@@ -52,7 +52,8 @@ const HomePage = () => {
       });
   };
 
-  const handleAddBlogClick = () => {
+  const handleAddBlogClick = (e) => {
+    e.preventDefault()
     if (role === 'contentCreator') {
       navigate('/addblog');
     } else {

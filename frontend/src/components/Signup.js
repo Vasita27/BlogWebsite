@@ -12,7 +12,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("hi")
     try {
       const userData = { username, password, role }; // Include the selected role
       const response = await axios.post(`${API_URL}/signup`, userData,{ withCredentials: true }); //Send the data to backend
