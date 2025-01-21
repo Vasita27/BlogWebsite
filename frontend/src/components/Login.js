@@ -28,7 +28,7 @@ const Login = () => {
   };
   // Component that is displayed : 
   return (
-    <div className="flex h-[100vh] w-[100vw] flex-col items-center justify-center bg-black">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center bg-black">
   <div className="card-wrapper h-[470px] w-[420px]">
     <div className="card-content flex items-center justify-center text-xs">
       <div className="bg-black p-6 h-[450px] w-[400px] rounded-3xl shadow-lg">
@@ -75,11 +75,8 @@ const Login = () => {
 
         {/* Links for Forgot Password and Register */}
         <div className="flex justify-between text-sm text-blue-300 mt-16">
-          <a href="/forgot-password" className="hover:underline">
+          <a href="/forgotpassword" className="hover:underline">
             Forgot Password?
-          </a>
-          <a href="/signup" className="hover:underline">
-            Register
           </a>
         </div>
       </div>

@@ -8,6 +8,8 @@ import HomePage from './components/HomePage';
 import AddBlog from './components/addBlog'; 
 import BlogDetail from './components/BlogDetail';
 import ManageBlogs from './components/ManageBlogs';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 const App = () => {
   return (
     <Router>
@@ -28,6 +30,8 @@ const App = () => {
         />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/manageblogs" element={<ManageBlogs />} />
+        <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+        <Route path="/reset-password/:token" element={<ResetPassword/>}/>
         {/* All other routes which are not defined or valid, redirect to login page */}
         <Route path="*" element={<Login />} />
 

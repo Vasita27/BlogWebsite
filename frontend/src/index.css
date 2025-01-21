@@ -1,32 +1,49 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
 
-@layer utilities {
-  /* Act as a border */
-  .card-wrapper {
-    @apply relative overflow-hidden rounded-3xl bg-gradient-to-b from-slate-950 to-slate-950;
+  @layer utilities {
+    /* Card Wrapper - Acts as a border */
+    .card-wrapper {
+      @apply relative overflow-hidden rounded-3xl bg-gradient-to-b from-slate-950 to-slate-950;
+    }
+
+    /* Gradient for Border - Responsive */
+    .card-wrapper::before {
+      background: conic-gradient(
+        rgba(0, 0, 0, 0) 0deg,
+        #46cec4 80deg,
+        rgba(0, 0, 0, 0) 100deg,
+        rgba(0, 0, 0, 0) 170deg,
+        #fdd74d 260deg,
+        rgba(0, 0, 0, 0) 280deg,
+        rgba(0, 0, 0, 0) 360deg,
+        transparent 180deg
+      );
+
+      @apply absolute left-[-20%] top-[-20%] h-[150%] w-[150%] animate-border-spin content-[''];
+      @apply sm:left-[-15%] sm:top-[-15%] sm:h-[140%] sm:w-[140%];
+      @apply lg:left-[-25%] lg:top-[-25%] lg:h-[150%] lg:w-[150%];
+    }
+
+    /* Card Content - Body */
+    .card-content {
+      @apply absolute rounded-2xl bg-gradient-to-b from-slate-950 to-slate-950;
+      @apply left-[5px] top-[5px] h-[calc(100%-10px)] w-[calc(100%-10px)];
+      @apply sm:left-[10px] sm:top-[10px] sm:h-[calc(100%-20px)] sm:w-[calc(100%-20px)];
+    }
+
+    /* Animation for Border Spin */
+    @keyframes border-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animate-border-spin {
+      animation: border-spin 5s linear infinite;
+    }
   }
-
-  /* Gradient */
-  .card-wrapper::before {
-    background: conic-gradient(
-      rgba(0, 0, 0, 0) 0deg,
-      #46cec4 80deg,
-      rgba(0, 0, 0, 0) 100deg,
-      rgba(0, 0, 0, 0) 170deg,
-      #fdd74d 260deg,
-      rgba(0, 0, 0, 0) 280deg,
-      rgba(0, 0, 0, 0) 360deg,
-
-      transparent 180deg
-    );
-
-    @apply absolute left-[-25%] top-[-25%] h-[150%] w-[150%] animate-border-spin content-[''];
-  }
-
-  /* Body */
-  .card-content {
-    @apply absolute left-[5px] top-[5px] h-[calc(100%-10px)] w-[calc(100%-10px)] rounded-2xl bg-gradient-to-b from-slate-950 to-slate-950;
-  }
-} 
