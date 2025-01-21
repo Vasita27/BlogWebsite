@@ -44,6 +44,7 @@ const HomePage = () => {
     const url = `http://localhost:5000/app/getBlogs?page=${page}&limit=4&order=${order}`;
     axios.get(url,{withCredentials:true})
       .then(response => {
+        
         setBlogs(response.data.blogs);
         setTotalPages(response.data.totalPages);
       })
@@ -155,8 +156,24 @@ const HomePage = () => {
               />
             )}
           </div>
+          <p className='text-gray-400'>
+    Published On:{" "}
+    {new Date(blog.updatedAt).toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })}{" "}
+    at{" "}
+    {new Date(blog.updatedAt).toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })}
+  </p>
 
           {/* Blog Content */}
+          {console.log(blog.updatedAt)}
           <div className="p-4">
             <h3 className="text-xl font-semibold mb-2 text-teal-400">
               {blog.title}
