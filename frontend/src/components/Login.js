@@ -28,7 +28,7 @@ const Login = () => {
   };
   // Component that is displayed : 
   return (
-    <div className="flex h-[100vh] w-[100vw] flex-col items-center justify-center bg-black">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center bg-black">
   <div className="card-wrapper h-[470px] w-[420px]">
     <div className="card-content flex items-center justify-center text-xs">
       <div className="bg-black p-6 h-[450px] w-[400px] rounded-3xl shadow-lg">

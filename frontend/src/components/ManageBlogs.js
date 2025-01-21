@@ -68,65 +68,134 @@ const ManageBlogs = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.heading}>Manage My Blogs</h2>
-      {error && <p className={styles.error}>{error}</p>}
+    <div className="min-h-screen bg-gray-900 text-white">
+  <div className="container mx-auto px-4 py-8">
+    {/* Page Header */}
+    <h2 className="text-3xl font-bold text-center mb-8">Manage My Blogs</h2>
+    {error && (
+      <p className="text-center text-red-500 mb-4">{error}</p>
+    )}
 
-      {/* Blog List with Edit and Delete Buttons */}
-      <div className={styles.blogList}>
-        {blogs.length > 0 ? (
-          blogs.map((blog) => (
-            <div key={blog._id} className={styles.blogCard}>
-              {selectedBlogId === blog._id ? (
-                // Edit Form for the selected blog
-                <div className={styles.editForm}>
-                  <h3>Edit Blog</h3>
-                  <form onSubmit={updateBlog}>
-                    <label>Title:</label>
-                    <input type="text" name="title" value={updatedBlog.title} onChange={handleChange} required />
-
-                    <label>Content:</label>
-                    <textarea name="content" value={updatedBlog.content} onChange={handleChange} required />
-
-                    <label>Categories:</label>
-                    <input type="text" name="categories" value={updatedBlog.categories} onChange={handleChange} />
-
-                    <label>Tags:</label>
-                    <input type="text" name="tags" value={updatedBlog.tags} onChange={handleChange} />
-
-                    <button type="submit" className={styles.updateBtn}>Update</button>
-                    <button onClick={() => setSelectedBlogId(null)} className={styles.cancelBtn}>Cancel</button>
-                  </form>
-                </div>
-              ) : (
-                // Blog Card with Edit & Delete
-                <>
-                  <h3>{blog.title}</h3>
-                  <p>{blog.content.substring(0, 100)}...</p>
-                  <div className={styles.buttons}>
-                    <button onClick={() => handleEdit(blog)} className={styles.editBtn}>Edit</button>
-                    <button onClick={() => deleteBlog(blog._id)} className={styles.deleteBtn}>Delete</button>
+    {/* Blog List */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {blogs.length > 0 ? (
+        blogs.map((blog) => (
+          <div
+            key={blog._id}
+            className="bg-gray-800 rounded-lg shadow-lg p-4 relative"
+          >
+            {selectedBlogId === blog._id ? (
+              // Edit Form for the selected blog
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-4 text-teal-400">Edit Blog</h3>
+                <form onSubmit={updateBlog} className="space-y-4">
+                  <div>
+                    <label className="block text-sm text-gray-400">Title:</label>
+                    <input
+                      type="text"
+                      name="title"
+                      value={updatedBlog.title}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-gray-700 text-white rounded-lg p-2"
+                    />
                   </div>
-                </>
-              )}
-            </div>
-          ))
-        ) : (
-          <p>No blogs found</p>
-        )}
-      </div>
-
-      {/* Pagination Controls */}
-      <div className={styles.pagination}>
-        <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <span>Page {currentPage} of {totalPages}</span>
-        <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>
-          Next
-        </button>
-      </div>
+                  <div>
+                    <label className="block text-sm text-gray-400">Content:</label>
+                    <textarea
+                      name="content"
+                      value={updatedBlog.content}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-gray-700 text-white rounded-lg p-2"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gray-400">Categories:</label>
+                    <input
+                      type="text"
+                      name="categories"
+                      value={updatedBlog.categories}
+                      onChange={handleChange}
+                      className="w-full bg-gray-700 text-white rounded-lg p-2"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gray-400">Tags:</label>
+                    <input
+                      type="text"
+                      name="tags"
+                      value={updatedBlog.tags}
+                      onChange={handleChange}
+                      className="w-full bg-gray-700 text-white rounded-lg p-2"
+                    />
+                  </div>
+                  <div className="flex justify-between">
+                    <button
+                      type="submit"
+                      className="bg-teal-500 text-black py-2 px-4 rounded-lg shadow-md hover:bg-teal-400"
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() => setSelectedBlogId(null)}
+                      className="bg-red-500 text-black py-2 px-4 rounded-lg shadow-md hover:bg-red-400"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            ) : (
+              // Blog Card with Edit & Delete Buttons
+              <>
+                <h3 className="text-xl font-semibold text-teal-400">{blog.title}</h3>
+                <p className="text-gray-400 mb-4">{blog.content.substring(0, 100)}...</p>
+                <div className="absolute bottom-4 left-4 flex space-x-4">
+                  <button
+                    onClick={() => handleEdit(blog)}
+                    className="bg-blue-500 text-black py-2 px-4 rounded-lg shadow-md hover:bg-blue-400"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => deleteBlog(blog._id)}
+                    className="bg-red-500 text-black py-2 px-4 rounded-lg shadow-md hover:bg-red-400"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        ))
+      ) : (
+        <p className="text-center text-gray-400">No blogs found</p>
+      )}
     </div>
+
+    {/* Pagination Controls */}
+    <div className="flex justify-between items-center mt-8">
+      <button
+        onClick={() => setCurrentPage(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="bg-gray-700 py-2 px-4 rounded-lg shadow-md hover:bg-gray-600 disabled:opacity-50"
+      >
+        Previous
+      </button>
+      <span className="text-gray-400">
+        Page {currentPage} of {totalPages}
+      </span>
+      <button
+        onClick={() => setCurrentPage(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="bg-gray-700 py-2 px-4 rounded-lg shadow-md hover:bg-gray-600 disabled:opacity-50"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
   );
 };
 

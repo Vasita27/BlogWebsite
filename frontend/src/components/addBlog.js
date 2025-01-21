@@ -90,83 +90,111 @@ const CreateBlog = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Create a New Blog</h2>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center py-10">
+  <h2 className="text-3xl font-bold mb-6 text-center">Create a New Blog</h2>
 
-      {message && (
-        <div className={`alert ${message.includes("success") ? "alert-success" : "alert-danger"}`}>
-          {message}
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
-        <div className="mb-3">
-          <label className="form-label">Title</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter blog title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Content</label>
-          <textarea
-            className="form-control"
-            placeholder="Write your blog content here..."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            rows="6"
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Categories (comma-separated)</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="e.g., Technology, Health"
-            value={categories}
-            onChange={(e) => setCategories(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Tags (comma-separated)</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="e.g., React, MongoDB, Node"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">Upload Image</label>
-          <input
-            type="file"
-            className="form-control"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </div>
-
-        {imagePreview && (
-          <div className="mb-3 text-center">
-            <p>Image Preview:</p>
-            <img src={imagePreview} alt="Preview" className="img-fluid rounded shadow" width="200" />
-          </div>
-        )}
-
-        <button type="submit" className="btn btn-primary w-100">Publish</button>
-      </form>
+  {message && (
+    <div
+      className={`w-full max-w-lg p-4 mb-6 rounded-lg text-center ${
+        message.includes("success")
+          ? "bg-green-500 text-white"
+          : "bg-red-500 text-white"
+      }`}
+    >
+      {message}
     </div>
+  )}
+
+  <form
+    onSubmit={handleSubmit}
+    className="w-full max-w-lg bg-gray-800 p-6 rounded-lg shadow-lg"
+  >
+    {/* Title Field */}
+    <div className="mb-4">
+      <label className="block text-sm font-medium mb-2">Title</label>
+      <input
+        type="text"
+        className="w-full bg-gray-700 border border-gray-600 text-white rounded-lg py-2 px-3 outline-none focus:ring focus:ring-teal-400"
+        placeholder="Enter blog title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      />
+    </div>
+
+    {/* Content Field */}
+    <div className="mb-4">
+      <label className="block text-sm font-medium mb-2">Content</label>
+      <textarea
+        className="w-full bg-gray-700 border border-gray-600 text-white rounded-lg py-2 px-3 outline-none focus:ring focus:ring-teal-400"
+        placeholder="Write your blog content here..."
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        rows="6"
+        required
+      />
+    </div>
+
+    {/* Categories Field */}
+    <div className="mb-4">
+      <label className="block text-sm font-medium mb-2">
+        Categories (comma-separated)
+      </label>
+      <input
+        type="text"
+        className="w-full bg-gray-700 border border-gray-600 text-white rounded-lg py-2 px-3 outline-none focus:ring focus:ring-teal-400"
+        placeholder="e.g., Technology, Health"
+        value={categories}
+        onChange={(e) => setCategories(e.target.value)}
+        required
+      />
+    </div>
+
+    {/* Tags Field */}
+    <div className="mb-4">
+      <label className="block text-sm font-medium mb-2">Tags (comma-separated)</label>
+      <input
+        type="text"
+        className="w-full bg-gray-700 border border-gray-600 text-white rounded-lg py-2 px-3 outline-none focus:ring focus:ring-teal-400"
+        placeholder="e.g., React, MongoDB, Node"
+        value={tags}
+        onChange={(e) => setTags(e.target.value)}
+      />
+    </div>
+
+    {/* Upload Image Field */}
+    <div className="mb-4">
+      <label className="block text-sm font-medium mb-2">Upload Image</label>
+      <input
+        type="file"
+        className="w-full bg-gray-700 border border-gray-600 text-gray-400 rounded-lg py-2 px-3 outline-none focus:ring focus:ring-teal-400"
+        accept="image/*"
+        onChange={handleImageChange}
+      />
+    </div>
+
+    {/* Image Preview */}
+    {imagePreview && (
+      <div className="mb-6 text-center">
+        <p className="text-sm mb-2">Image Preview:</p>
+        <img
+          src={imagePreview}
+          alt="Preview"
+          className="rounded-lg shadow-lg max-w-xs mx-auto"
+        />
+      </div>
+    )}
+
+    {/* Submit Button */}
+    <button
+      type="submit"
+      className="w-full bg-teal-500 hover:bg-teal-400 text-black font-medium py-2 px-4 rounded-lg transition duration-300"
+    >
+      Publish
+    </button>
+  </form>
+</div>
+
   );
 };
 
