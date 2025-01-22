@@ -6,7 +6,9 @@ const nodemailer = require('nodemailer');
 
 // Signup controller
 exports.signup = async (req, res) => {
+  console.log(req.body)
   const { username, email,password, role } = req.body;
+  console.log("hello")
   try {
     // Hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -24,10 +26,12 @@ exports.signup = async (req, res) => {
 
     // Set cookie with the token
     res.cookie('user', token, {
-      httpOnly: true, 
-      maxAge: 3600000, 
-      secure: false 
+      httpOnly: true, // Keep true to prevent client-side JS access (security best practice)
+      secure: true, // Set true for HTTPS (required in production)
+      sameSite: 'None', // Required for cross-origin cookies
+      maxAge: 3600000 // 1 hour expiry
     });
+    
 
     // Send response
     res.status(201).json({ message: 'User registered successfully', token });
@@ -60,10 +64,11 @@ exports.login = async (req, res) => {
       { expiresIn: '1h' }
     );
     res.cookie('user', token, {
-      httpOnly: true, 
-      maxAge: 3600000, 
-      secure: false
-  }).json({ message: 'Login successful', token });
+      httpOnly: true, // Keep true to prevent client-side JS access (security best practice)
+      secure: true, // Set true for HTTPS (required in production)
+      sameSite: 'None', // Required for cross-origin cookies
+      maxAge: 3600000 // 1 hour expiry
+    }).json({ message: 'Login successful', token });
   } catch (error) {
     console.error("Error occurred during login:", error);
     res.status(500).json({ message: 'Error during login', error });
@@ -93,7 +98,7 @@ exports.forgotPassword = async (req, res) => {
           to: user.email,
           from: process.env.SENDER_MAIL,
           subject: 'Password Reset',
-          text: `Click the link to reset your password: http://localhost:3000/reset-password/${token}`,
+          text: `Click the link to reset your password: https://blog-website-orpin-chi.vercel.app/reset-password/${token}`,
       };
 
       await transporter.sendMail(mailOptions);

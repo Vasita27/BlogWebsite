@@ -20,6 +20,7 @@ const HomePage = () => {
         withCredentials: true,
       })
         .then((response) => {
+          console.log("vokvok")
           setIsAuthenticated(true);
           sessionStorage.setItem('details', JSON.stringify(response.data.user));
           const user = JSON.parse(sessionStorage.getItem('details'));

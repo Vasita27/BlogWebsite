@@ -10,11 +10,12 @@ const path = require("path")
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 // Configure CORS to allow requests from specified origins
-app.use(cors({ 
-    origin: ["http://localhost:3000","https://blog-website-orpin-chi.vercel.app"], //Will Update with the frontend's origin after hosting
-    credentials: true // Allow cookies and credentials to be sent
+app.use(cors({
+  origin: "https://blog-website-orpin-chi.vercel.app", // Frontend origin
+  credentials: true, // Allows sending cookies
+  methods: "*", // Allow specific HTTP methods
+  allowedHeaders:"*", // Allow headers
 }));
-
 // Middleware to parse incoming JSON requests
 app.use(cookieParser());
 
