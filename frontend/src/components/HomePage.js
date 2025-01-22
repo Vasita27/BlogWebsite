@@ -152,7 +152,7 @@ const HomePage = () => {
             <div className="relative h-48 bg-gray-800">
               {blog.images && (
                 <img
-                  src={`https://blogwebsite-2-7quo.onrender.com${blog.images}`}
+                  src={blog.images}
                   alt={blog.title}
                   className="object-cover w-full h-full hover:opacity-80 transition-opacity duration-300"
                 />

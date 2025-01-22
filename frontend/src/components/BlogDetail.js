@@ -44,7 +44,7 @@ const BlogDetail = () => {
         {blog.images.map((image, index) => (
           <img
             key={index}
-            src={`https://blogwebsite-2-7quo.onrender.com${image}`}
+            src={image}
             alt={`Blog ${index}`}
             className="rounded-lg w-full object-cover mb-4"
             height="200px"

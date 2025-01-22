@@ -1,55 +1,68 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
-const multer = require('multer')
-dotenv.config(); // Load environment variables from .env file
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 const connectDB = require('./config/db');
-const path = require("path")
+const path = require("path");
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
+
+// Middleware to parse incoming requests
 app.use(express.urlencoded({ extended: true }));
-// Configure CORS to allow requests from specified origins
+app.use(express.json());
+app.use(cookieParser());
+
+// CORS configuration
 app.use(cors({
   origin: "https://blog-website-orpin-chi.vercel.app", // Frontend origin
   credentials: true, // Allow cookies and authentication
-  methods: "*", // Allows ALL HTTP methods
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'], // Allows ALL HTTP methods
   allowedHeaders: ["Content-Type", "Authorization"], // Explicitly allow Content-Type and Authorization headers
 }));
-// Middleware to parse incoming JSON requests
-app.use(cookieParser());
 
-app.use(express.json());
-
-//connect to database
+// Connect to the database
 connectDB();
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, "uploads/"); // Specify the folder where images will be stored
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname)); // Generate a unique filename
-    },
-  });
-  const upload = multer({ storage: storage });
-  app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Endpoint to upload image
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Set up Multer (we'll still use memory storage since Cloudinary handles the file upload)
+const storage = multer.memoryStorage(); // Store file in memory temporarily
+const upload = multer({ storage: storage });
+
+// Endpoint to upload image to Cloudinary
 app.post("/uploadImage", upload.single("image"), (req, res) => {
   if (!req.file) return res.status(400).json({ error: "No file uploaded" });
 
-  // Construct image URL
-  const imageUrl = `/uploads/${req.file.filename}`;
-  res.json({ imageUrl });
+  // Upload the file to Cloudinary
+  cloudinary.uploader.upload_stream(
+    { resource_type: 'image' },
+    (error, result) => {
+      if (error) {
+        return res.status(500).json({ error: 'Failed to upload image to Cloudinary' });
+      }
+      // Send back the image URL from Cloudinary
+      res.json({ imageUrl: result.secure_url });
+    }
+  ).end(req.file.buffer);
 });
 
-// Import userRoutes and attach them to the app
+// Import routes for users and apps
 const userRoutes = require('./routes/authRoutes');
 app.use('/auth', userRoutes);
+
 const appRoutes = require('./routes/appRoutes');
 app.use('/app', appRoutes);
 
-// Root route (optional, for testing purposes)
+// Root route for testing purposes
 app.get('/', (req, res) => {
     res.send('API is running...');
 });
