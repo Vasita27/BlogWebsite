@@ -49,7 +49,7 @@ body {
     border-color: #03a9f4;
   }
   
-  button {
+  .login-button {
     width: 100%;
     padding: 1.5rem;
     font-size: 1.25rem;
