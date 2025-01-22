@@ -12,9 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 // Configure CORS to allow requests from specified origins
 app.use(cors({
   origin: "https://blog-website-orpin-chi.vercel.app", // Frontend origin
-  credentials: true, // Allows sending cookies
-  methods: "*", // Allow specific HTTP methods
-  allowedHeaders:"*", // Allow headers
+  credentials: true, // Allow cookies and authentication
+  methods: "*", // Allows ALL HTTP methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Explicitly allow Content-Type and Authorization headers
 }));
 // Middleware to parse incoming JSON requests
 app.use(cookieParser());
