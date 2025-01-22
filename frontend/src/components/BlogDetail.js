@@ -9,7 +9,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/app/getBlog/${id}`, {
+        const response = await axios.get(`https://blogwebsite-2-7quo.onrender.com/app/getBlog/${id}`, {
           withCredentials: true
         });
         setBlog(response.data.blog);
@@ -44,7 +44,7 @@ const BlogDetail = () => {
         {blog.images.map((image, index) => (
           <img
             key={index}
-            src={`http://localhost:5000${image}`}
+            src={`https://blogwebsite-2-7quo.onrender.com${image}`}
             alt={`Blog ${index}`}
             className="rounded-lg w-full object-cover mb-4"
             height="200px"

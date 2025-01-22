@@ -58,7 +58,7 @@ const CreateBlog = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/app/createBlog", blogData, {
+      const response = await axios.post("https://blogwebsite-2-7quo.onrender.com/app/createBlog", blogData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -79,7 +79,7 @@ const CreateBlog = () => {
     formData.append("image", image); // Attach the image file
 
     try {
-      const response = await axios.post("http://localhost:5000/uploadImage", formData, {
+      const response = await axios.post("https://blogwebsite-2-7quo.onrender.com/uploadImage", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data.imageUrl; // Assuming the backend returns the image URL

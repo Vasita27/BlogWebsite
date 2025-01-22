@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/auth';
+const API_URL = 'https://blogwebsite-2-7quo.onrender.com/auth';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');

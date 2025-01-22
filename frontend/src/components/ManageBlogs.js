@@ -18,7 +18,7 @@ const ManageBlogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/app/manageblogs?page=${currentPage}&limit=3`, {
+      const response = await axios.get(`https://blogwebsite-2-7quo.onrender.com/app/manageblogs?page=${currentPage}&limit=3`, {
         withCredentials: true,
       });
       setBlogs(response.data.blogs);
@@ -32,7 +32,7 @@ const ManageBlogs = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:5000/app/deleteBlog/${id}`, { withCredentials: true });
+        await axios.delete(`https://blogwebsite-2-7quo.onrender.com/app/deleteBlog/${id}`, { withCredentials: true });
         setBlogs(blogs.filter((blog) => blog._id !== id));
       } catch (err) {
         setError("Error deleting blog");
@@ -52,7 +52,7 @@ const ManageBlogs = () => {
   const updateBlog = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/app/updateBlog/${updatedBlog._id}`, updatedBlog, { withCredentials: true });
+      await axios.patch(`https://blogwebsite-2-7quo.onrender.com/app/updateBlog/${updatedBlog._id}`, updatedBlog, { withCredentials: true });
       setSelectedBlogId(null);
       fetchBlogs();
     } catch (err) {

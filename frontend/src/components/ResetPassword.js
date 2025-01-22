@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/auth';
+const API_URL = 'https://blogwebsite-2-7quo.onrender.com/auth';
 
 const ResetPassword = () => {
   const { token } = useParams();
