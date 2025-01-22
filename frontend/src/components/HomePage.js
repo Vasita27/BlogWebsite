@@ -15,7 +15,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (token) {
-      axios.get('https://blogwebsite-2-7quo.onrender.com/app/home', {
+      axios.get('https://blogwebsite-3-0tyc.onrender.com/app/home', {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       })
@@ -42,7 +42,7 @@ const HomePage = () => {
 
   const fetchBlogs = (order, page) => {
     
-    const url = `https://blogwebsite-2-7quo.onrender.com/app/getBlogs?page=${page}&limit=6&order=${order}`;
+    const url = `https://blogwebsite-3-0tyc.onrender.com/app/getBlogs?page=${page}&limit=6&order=${order}`;
     axios.get(url,{withCredentials:true})
       .then(response => {
         
@@ -68,7 +68,7 @@ const HomePage = () => {
   };
 
   const handleLikeClick = (blogId, isLiked) => {
-    axios.post(`https://blogwebsite-2-7quo.onrender.com/app/like/${blogId}`, {}, {
+    axios.post(`https://blogwebsite-3-0tyc.onrender.com/app/like/${blogId}`, {}, {
       headers: { Authorization: `Bearer ${token}` },
       withCredentials: true,
     })

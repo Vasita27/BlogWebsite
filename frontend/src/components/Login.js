@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import axios from 'axios';
 
-const API_URL = 'https://blogwebsite-2-7quo.onrender.com/auth'; // Actual backend route will be replaced after hosting.
+const API_URL = 'https://blogwebsite-3-0tyc.onrender.com/auth'; // Actual backend route will be replaced after hosting.
 
 const Login = () => {
   //states for management

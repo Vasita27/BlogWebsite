@@ -9,7 +9,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`https://blogwebsite-2-7quo.onrender.com/app/getBlog/${id}`, {
+        const response = await axios.get(`https://blogwebsite-3-0tyc.onrender.com/app/getBlog/${id}`, {
           withCredentials: true
         });
         setBlog(response.data.blog);

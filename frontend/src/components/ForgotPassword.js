@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_URL = 'https://blogwebsite-2-7quo.onrender.com/auth';
+const API_URL = 'https://blogwebsite-3-0tyc.onrender.com/auth';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');

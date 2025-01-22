@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = 'https://blogwebsite-2-7quo.onrender.com/auth'; // Can be replaced with actual backend URL after hosting.
+const API_URL = 'https://blogwebsite-3-0tyc.onrender.com/auth'; // Can be replaced with actual backend URL after hosting.
 
 const Signup = () => {
   const [username, setUsername] = useState('');
