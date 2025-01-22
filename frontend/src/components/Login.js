@@ -78,6 +78,9 @@ const Login = () => {
           <a href="/forgotpassword" className="hover:underline">
             Forgot Password?
           </a>
+          <a href="/signup" className="hover:underline">
+            Create account
+          </a>
         </div>
       </div>
     </div>

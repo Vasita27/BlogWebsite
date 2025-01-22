@@ -158,7 +158,7 @@ const HomePage = () => {
             )}
           </div>
           <p className='text-gray-400'>
-    Published On:{" "}
+    {" "}Published : {" "}
     {new Date(blog.updatedAt).toLocaleDateString("en-US", {
       weekday: "long",
       year: "numeric",
