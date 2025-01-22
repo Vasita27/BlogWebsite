@@ -78,7 +78,7 @@ const Login = () => {
   
           {/* Links for Forgot Password and Register */}
           <div className="flex justify-between text-xs sm:text-sm text-blue-300 mt-4 sm:mt-6">
-            <a href="/forgot-password" className="hover:underline">
+            <a href="/forgotpassword" className="hover:underline">
               Forgot Password?
             </a>
             <a href="/signup" className="hover:underline">
