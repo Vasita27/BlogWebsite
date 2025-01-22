@@ -11,7 +11,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // Configure CORS to allow requests from specified origins
 app.use(cors({ 
-    origin: ["http://localhost:3000"], //Will Update with the frontend's origin after hosting
+    origin: ["http://localhost:3000","https://blog-website-orpin-chi.vercel.app"], //Will Update with the frontend's origin after hosting
     credentials: true // Allow cookies and credentials to be sent
 }));
 
