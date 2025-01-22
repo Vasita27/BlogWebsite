@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import axios from 'axios';
-
+import "./Login.css"
 const API_URL = 'https://blogwebsite-3-0tyc.onrender.com/auth'; // Actual backend route will be replaced after hosting.
 
 const Login = () => {
-  //states for management
+  // states for management
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate
@@ -15,7 +15,7 @@ const Login = () => {
 
     try {
       const userData = { username, password };
-      const response = await axios.post(`${API_URL}/login`, userData,{ withCredentials: true }); //Send the data to backend.
+      const response = await axios.post(`${API_URL}/login`, userData, { withCredentials: true }); // Send the data to backend.
      
       if (response.data.token) {
         sessionStorage.setItem('token', response.data.token); // Save token to sessionStorage
@@ -26,12 +26,13 @@ const Login = () => {
       alert('Invalid login credentials');
     }
   };
-  // Component that is displayed : 
+
+  // Component that is displayed: 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-black">
-      <div className="card-wrapper h-[470px] w-[420px]">
+      <div className="card-wrapper h-[470px] w-[420px] sm:w-[350px] md:w-[400px]">
         <div className="card-content flex items-center justify-center text-xs">
-          <div className="bg-black p-6 h-[450px] w-[400px] rounded-3xl shadow-lg">
+          <div className="bg-black p-6 h-[450px] w-full md:w-[400px] rounded-3xl shadow-lg">
             {/* Title */}
             <h2 className="text-3xl font-bold text-center text-green-300 mb-6">Login</h2>
 

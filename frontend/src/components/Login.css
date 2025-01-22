@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+    background-color: black;
+  }
+  
+  .card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card {
+    background-color: black;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+  }
+  
+  .card h2 {
+    color: #81c784;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 1.5rem;
+    background-color: transparent;
+    color: #81c784;
+    border-bottom: 2px solid #2196f3;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #03a9f4;
+  }
+  
+  button {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    border: 2px solid #ffeb3b;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
+  .links {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #81c784;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: #81c784;
+    margin-bottom: 1rem;
+  }
+  
+  .links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .card-wrapper {
+      justify-content: flex-start;
+    }
+  
+    .card-content {
+      padding: 1rem;
+    }
+  
+    .card {
+      width: 100%;
+      max-width: 350px;
+    }
+  
+    .card h2 {
+      font-size: 1.75rem;
+    }
+  
+    input[type="text"],
+    input[type="password"] {
+      padding: 1.25rem;
+      font-size: 0.9rem;
+    }
+  
+    button {
+      padding: 1.25rem;
+      font-size: 1.125rem;
+    }
+  
+    .links {
+      font-size: 0.75rem;
+      text-align: center;
+    }
+  
+    .links a {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card h2 {
+      font-size: 1.5rem;
+    }
+  
+    input[type="text"],
+    input[type="password"] {
+      padding: 1rem;
+      font-size: 0.875rem;
+    }
+  
+    button {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+  
+    .links {
+      font-size: 0.75rem;
+    }
+  
+    .links a {
+      margin-bottom: 0.25rem;
+    }
+  }
+  
