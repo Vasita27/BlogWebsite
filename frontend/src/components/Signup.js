@@ -28,61 +28,84 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex h-[100vh] w-[100vw] flex-col items-center justify-center bg-black">
-      <div className="card-wrapper h-[520px] w-[420px]">
-        <div className="card-content flex items-center justify-center text-xs">
-          <div className="bg-black p-6 h-[500px] w-[400px] rounded-3xl shadow-lg">
-            <h2 className="text-3xl font-bold text-center text-green-300 mb-6">Signup</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Username Field */}
+    <div className="flex h-auto min-h-screen w-screen items-center justify-center bg-black">
+    <div className="card-wrapper h-auto w-full max-w-sm sm:h-[570px] sm:w-[420px] p-44 pt-52 sm:p-12">
+      <div className="card-content flex items-center justify-center text-xs w-full">
+        <div className="bg-black p-6 w-full h-auto sm:h-[550px] rounded-3xl shadow-lg">
+          {/* Title */}
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-green-300 mb-4 sm:mb-6">
+            Signup
+          </h2>
+  
+          {/* Signup Form */}
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            {/* Username Input */}
+            <div className="relative">
               <input
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-4 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                className="w-full px-3 py-4 sm:px-4 sm:py-6 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
               />
-
-              {/* Email Field */}
+              <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-400">
+                <i className="fas fa-user"></i>
+              </span>
+            </div>
+  
+            {/* Email Input */}
+            <div className="relative">
               <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-4 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                className="w-full px-3 py-4 sm:px-4 sm:py-6 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
               />
-
-              {/* Password Field */}
+              <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-400">
+                <i className="fas fa-envelope"></i>
+              </span>
+            </div>
+  
+            {/* Password Input */}
+            <div className="relative">
               <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-6 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                className="w-full px-3 py-4 sm:px-4 sm:py-6 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
               />
-
-              {/* Role Selection */}
+              <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-400">
+                <i className="fas fa-lock"></i>
+              </span>
+            </div>
+  
+            {/* Role Selector */}
+            <div className="relative">
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full px-4 py-4 mt-2 bg-black text-white border-b border-blue-500 focus:outline-none focus:ring-blue-500 placeholder-gray-400"
+                className="w-full px-3 py-4 sm:px-4 sm:py-6 bg-black text-white border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
               >
-                <option value="user">User</option>
-                <option value="contentCreator">Content Creator</option>
+                <option value="user" className="bg-black text-white">User</option>
+                <option value="contentCreator" className="bg-black text-white">Content Creator</option>
               </select>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full py-6 mt-4 text-lg text-white font-bold rounded border-2 border-yellow-300 hover:opacity-90 shadow-lg"
-              >
-                Signup
-              </button>
-            </form>
-          </div>
+            </div>
+  
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full py-3 sm:py-4 text-base sm:text-lg text-white font-bold rounded border-2 border-yellow-300 hover:opacity-90 shadow-lg"
+            >
+              Signup
+            </button>
+          </form>
         </div>
       </div>
     </div>
+  </div>
+  
   );
 };
 

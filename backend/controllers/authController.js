@@ -51,7 +51,6 @@ exports.login = async (req, res) => {
     // Compare the provided password with the stored hash
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      console.log("gigi")
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     // Generate JWT token
@@ -79,12 +78,9 @@ exports.forgotPassword = async (req, res) => {
 
       // Generate a token for password reset
       const token = crypto.randomBytes(20).toString('hex');
-      console.log("hihkjc")
       user.resetToken = token;
       user.tokenExpiration = Date.now() + 3600000; // Token valid for 1 hour
       await user.save();
-      console.log(user)
-      console.log("nanna")
       // Send email with reset link
       const transporter = nodemailer.createTransport({
           service: 'Gmail',
@@ -93,7 +89,6 @@ exports.forgotPassword = async (req, res) => {
               pass: process.env.SENDER_PASS,
           },
       });
-      console.log(process.env.SENDER_MAIL)
       const mailOptions = {
           to: user.email,
           from: process.env.SENDER_MAIL,
@@ -110,16 +105,12 @@ exports.forgotPassword = async (req, res) => {
 }
 
 exports.resetPassword = async (req, res) => {
-  console.log("ayya")
   const { token } = req.params;
-  console.log("hmmmmmm")
   const { password } = req.body;
 
   try {
       const user = await User.findOne({ resetToken: token, tokenExpiration: { $gt: Date.now() } });
-      console.log("wah")
       if (!user) {
-        console.log("user ledu")
         return res.status(400).json({ message: 'Invalid or expired token' })};
 
       user.password = await bcrypt.hash(password, 10); 

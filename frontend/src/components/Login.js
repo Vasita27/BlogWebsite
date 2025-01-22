@@ -29,63 +29,63 @@ const Login = () => {
   // Component that is displayed : 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-black">
-  <div className="card-wrapper h-[470px] w-[420px]">
-    <div className="card-content flex items-center justify-center text-xs">
-      <div className="bg-black p-6 h-[450px] w-[400px] rounded-3xl shadow-lg">
-        {/* Title */}
-        <h2 className="text-3xl font-bold text-center text-green-300 mb-6">Login</h2>
+      <div className="card-wrapper h-[470px] w-[420px]">
+        <div className="card-content flex items-center justify-center text-xs">
+          <div className="bg-black p-6 h-[450px] w-[400px] rounded-3xl shadow-lg">
+            {/* Title */}
+            <h2 className="text-3xl font-bold text-center text-green-300 mb-6">Login</h2>
 
-        {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Username Input */}
-          <div className="relative">
-            <input
-              type="text"
-              value={username}  
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-6 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400" />
-            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 text-blue-400">
-              <i className="fas fa-user"></i>
-            </span>
-          </div>
+            {/* Login Form */}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Username Input */}
+              <div className="relative">
+                <input
+                  type="text"
+                  value={username}  
+                  placeholder="Username"
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full px-4 py-6 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400" />
+                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 text-blue-400">
+                  <i className="fas fa-user"></i>
+                </span>
+              </div>
 
-          {/* Password Input */}
-          <div className="relative">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-4 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-            />
-            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 text-blue-400">
-              <i className="fas fa-lock"></i>
-            </span>
-          </div>
+              {/* Password Input */}
+              <div className="relative">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-4 bg-transparent text-blue-300 border-b border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                />
+                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 text-blue-400">
+                  <i className="fas fa-lock"></i>
+                </span>
+              </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
+              {/* Submit Button */}
+              <button
+                type="submit"
                 className="w-full py-4 text-lg text-white font-bold  rounded border-2 border-yellow-300 hover:opacity-90 shadow-lg"
-          >
-            LOGIN
-          </button>
-        </form>
+              >
+                LOGIN
+              </button>
+            </form>
 
-        {/* Links for Forgot Password and Register */}
-        <div className="flex justify-between text-sm text-blue-300 mt-16">
-          <a href="/forgotpassword" className="hover:underline">
-            Forgot Password?
-          </a>
-          <a href="/signup" className="hover:underline">
-            Create account
-          </a>
+            {/* Links for Forgot Password and Register */}
+            <div className="flex justify-between text-sm text-blue-300 mt-16">
+              <a href="/forgotpassword" className="hover:underline">
+                Forgot Password?
+              </a>
+              <a href="/signup" className="hover:underline">
+                Create account
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
   );
 };
 

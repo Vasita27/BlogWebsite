@@ -26,7 +26,7 @@ exports.createBlog = async (req, res) => {
       title,
       content,
       categories,
-      tags: tags,
+      tags,
       images:imageUrl, // Assuming the image URL is passed from the frontend
       author: req.user.username, // Assuming the user ID is available in `req.user`
     });
@@ -50,7 +50,7 @@ exports.createBlog = async (req, res) => {
 
 // Trending Blogs
 exports.getBlogsByOrder = async (req, res) => {
-  const { page = 1, limit = 4, order = 'latest' } = req.query; // Default to latest order
+  const { page = 1, limit = 6, order = 'latest' } = req.query; // Default to latest order
   const skip = (page - 1) * limit;
 
   let sortOrder = {};
@@ -208,7 +208,7 @@ exports.getBlogs = async (req, res) => {
   try {
     // Get page and limit from query parameters (default to 1 and 2 respectively)
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 2;
+    const limit = parseInt(req.query.limit) || 6;
 
     // Calculate the number of documents to skip
     const skip = (page - 1) * limit;
