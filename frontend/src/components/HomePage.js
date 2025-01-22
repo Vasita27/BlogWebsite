@@ -41,7 +41,7 @@ const HomePage = () => {
 
   const fetchBlogs = (order, page) => {
     
-    const url = `http://localhost:5000/app/getBlogs?page=${page}&limit=4&order=${order}`;
+    const url = `http://localhost:5000/app/getBlogs?page=${page}&limit=6&order=${order}`;
     axios.get(url,{withCredentials:true})
       .then(response => {
         
@@ -103,7 +103,7 @@ const HomePage = () => {
       {/* Header Section */}
       <h1 className="text-4xl font-bold text-center mb-4">Our Insights and Stories</h1>
       <p className="text-center text-gray-400 mb-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+       Dive into our blogs and have a good read.
       </p>
   
       {/* Role-Specific Buttons */}
