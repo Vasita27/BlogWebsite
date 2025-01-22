@@ -6,9 +6,7 @@ const nodemailer = require('nodemailer');
 
 // Signup controller
 exports.signup = async (req, res) => {
-  console.log(req.body)
   const { username, email,password, role } = req.body;
-  console.log("hello")
   try {
     // Hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
