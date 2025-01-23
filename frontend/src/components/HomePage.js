@@ -20,7 +20,6 @@ const HomePage = () => {
         withCredentials: true,
       })
         .then((response) => {
-          console.log("vokvok")
           setIsAuthenticated(true);
           sessionStorage.setItem('details', JSON.stringify(response.data.user));
           const user = JSON.parse(sessionStorage.getItem('details'));
@@ -95,8 +94,16 @@ const HomePage = () => {
   };
 
   if (!isAuthenticated) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen w-full items-center justify-center bg-black">
+      <div className="relative flex items-center justify-center">
+        <div className="h-16 w-16 animate-spin rounded-full border-4 border-teal-500 border-t-transparent"></div>
+        <span className="absolute text-white text-xl font-bold">Loading...</span>
+      </div>
+    </div>
+    );
   }
+  
 
   return (
     <div className="min-h-screen bg-black text-white">

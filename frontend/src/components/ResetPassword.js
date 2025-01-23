@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const API_URL = 'https://blogwebsite-3-0tyc.onrender.com/auth';
 
 const ResetPassword = () => {
   const { token } = useParams();
+  const navigate = useNavigate(); // Hook for navigation
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
@@ -14,6 +15,12 @@ const ResetPassword = () => {
     try {
       const response = await axios.post(`${API_URL}/reset-password/${token}`, { password });
       setMessage(response.data.message);
+
+      // Redirect after 2 seconds
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+      
     } catch (error) {
       setMessage('Error: Unable to reset password');
     }

@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = 'https://blogwebsite-3-0tyc.onrender.com/auth'; // Can be replaced with actual backend URL after hosting.
-
+const API_URL = 'https://blogwebsite-3-0tyc.onrender.com/auth'; 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -13,7 +12,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hi")
     try {
       const userData = { username, email, password, role }; // Include email
       const response = await axios.post(`${API_URL}/signup`, userData, { withCredentials: true });
